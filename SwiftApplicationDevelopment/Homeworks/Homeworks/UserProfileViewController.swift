@@ -24,4 +24,5 @@ class UserProfileViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         UserProfileCell()
     }
+
 }

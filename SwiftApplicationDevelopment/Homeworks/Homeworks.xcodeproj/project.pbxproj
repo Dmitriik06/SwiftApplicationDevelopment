@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		78440F942A3A4D3100417547 /* UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F932A3A4D3100417547 /* UserProfileViewController.swift */; };
+		78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F952A3A4F4100417547 /* UserProfileCell.swift */; };
+		78A4F3C52A3BA7A60061D9CB /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78A4F3C42A3BA7A60061D9CB /* DialogViewController.swift */; };
 		78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF162A36522D00A28928 /* AppDelegate.swift */; };
 		78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF182A36522D00A28928 /* SceneDelegate.swift */; };
 		78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF1A2A36522D00A28928 /* ViewController.swift */; };
@@ -15,6 +18,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		78440F932A3A4D3100417547 /* UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewController.swift; sourceTree = "<group>"; };
+		78440F952A3A4F4100417547 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		78A4F3C42A3BA7A60061D9CB /* DialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
 		78F0BF132A36522D00A28928 /* Homeworks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0BF162A36522D00A28928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78F0BF182A36522D00A28928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -60,6 +66,9 @@
 				78F0BF1F2A36522E00A28928 /* Assets.xcassets */,
 				78F0BF212A36522E00A28928 /* LaunchScreen.storyboard */,
 				78F0BF242A36522E00A28928 /* Info.plist */,
+				78440F932A3A4D3100417547 /* UserProfileViewController.swift */,
+				78440F952A3A4F4100417547 /* UserProfileCell.swift */,
+				78A4F3C42A3BA7A60061D9CB /* DialogViewController.swift */,
 			);
 			path = Homeworks;
 			sourceTree = "<group>";
@@ -135,6 +144,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */,
+				78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */,
+				78A4F3C52A3BA7A60061D9CB /* DialogViewController.swift in Sources */,
+				78440F942A3A4D3100417547 /* UserProfileViewController.swift in Sources */,
 				78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */,
 				78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */,
 			);

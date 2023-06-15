@@ -56,6 +56,7 @@ class ViewController: UIViewController {
         setupViews()
         setupConstraints()
         view.backgroundColor = .white
+        addEnterButtonTarget()
     }
     
     func setupViews(){
@@ -99,6 +100,14 @@ class ViewController: UIViewController {
             enterButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
             enterButton.heightAnchor.constraint(equalToConstant: view.frame.height / 15)
         ])
+    }
+    
+    private func addEnterButtonTarget(){
+        enterButton.addTarget(self, action: #selector(clickOnEnterButton), for: .touchUpInside)
+    }
+    
+    @objc func clickOnEnterButton(){
+        navigationController?.pushViewController(UserProfileViewController(), animated: true)
     }
     
 }
