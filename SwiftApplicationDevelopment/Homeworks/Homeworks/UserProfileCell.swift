@@ -11,7 +11,9 @@ class UserProfileCell: UITableViewCell {
     
     var userImage = UIImageView(image: UIImage(systemName: "person"))
     
-    var click: ((UITableViewCell) -> Void)?
+    var tableView = UITableView()
+    
+    var click: ((UITableView) -> Void)?
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -33,6 +35,8 @@ class UserProfileCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
+        let recognizer = UITapGestureRecognizer(target: self, action: #selector(clickOnCell))
+        addGestureRecognizer(recognizer)
     }
     
     required init?(coder: NSCoder) {
@@ -68,6 +72,10 @@ class UserProfileCell: UITableViewCell {
             descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         
         ])
+    }
+    
+    @objc func clickOnCell(){
+        click?(tableView)
     }
     
 }

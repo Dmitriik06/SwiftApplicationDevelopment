@@ -11,6 +11,7 @@ class UserProfileViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+        tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
     }
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -22,7 +23,11 @@ class UserProfileViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UserProfileCell()
+        let cell = UserProfileCell()
+        cell.click = { dialog in
+            self.navigationController?.pushViewController(DialogViewController(), animated: true)
+        }
+        return cell
     }
 
 }
