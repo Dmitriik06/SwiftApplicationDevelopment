@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
+    
+    private var session = URLSession.shared
+    
+    private lazy var webView: WKWebView = {
+        let webView = WKWebView()
+        webView.navigationDelegate = self
+        return webView
+    }()
+    
+    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51679394&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
     
     var topImage = UIImageView(image: UIImage(systemName: "lock"))
     
@@ -54,17 +65,20 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupConstraints()
-        view.backgroundColor = .white
-        addEnterButtonTarget()
+        webView.frame = CGRect(x: 10, y: 10, width: 300, height: 300)
+        webView.load(request)
+//        setupConstraints()
+        view.backgroundColor = .gray
+//        addEnterButtonTarget()
     }
     
     func setupViews(){
-        view.addSubview(topImage)
-        view.addSubview(topLabel)
-        view.addSubview(loginTextField)
-        view.addSubview(passwordTextField)
-        view.addSubview(enterButton)
+        view.addSubview(webView)
+//        view.addSubview(topImage)
+//        view.addSubview(topLabel)
+//        view.addSubview(loginTextField)
+//        view.addSubview(passwordTextField)
+//        view.addSubview(enterButton)
     }
     
     func setupConstraints(){
@@ -104,6 +118,30 @@ class ViewController: UIViewController {
     
     private func addEnterButtonTarget(){
         enterButton.addTarget(self, action: #selector(clickOnEnterButton), for: .touchUpInside)
+    }
+    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
+        guard let url = navigationResponse.response.url, url.path == "/blank.html",
+              let fragment = url.fragment else {
+            decisionHandler(.allow)
+            return
+        }
+        let params = fragment
+            .components(separatedBy: "&")
+            .map {$0.components(separatedBy: "=")}
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
+        let token = params["access_token"]
+        let userID = params["user_id"]
+        print(token!)
+        print(userID!)
+        decisionHandler(.cancel)
+        webView.removeFromSuperview()
     }
     
     @objc func clickOnEnterButton(){
