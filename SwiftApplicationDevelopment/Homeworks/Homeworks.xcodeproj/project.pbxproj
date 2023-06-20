@@ -13,6 +13,7 @@
 		785CF0182A3CC4A1008EE472 /* DialogTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */; };
 		785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0192A3CC693008EE472 /* DialogBodyCell.swift */; };
 		785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */; };
+		78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */; };
 		78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF162A36522D00A28928 /* AppDelegate.swift */; };
 		78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF182A36522D00A28928 /* SceneDelegate.swift */; };
 		78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF1A2A36522D00A28928 /* ViewController.swift */; };
@@ -27,6 +28,7 @@
 		785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTitleCell.swift; sourceTree = "<group>"; };
 		785CF0192A3CC693008EE472 /* DialogBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBodyCell.swift; sourceTree = "<group>"; };
 		785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBottomCell.swift; sourceTree = "<group>"; };
+		78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
 		78F0BF132A36522D00A28928 /* Homeworks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0BF162A36522D00A28928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78F0BF182A36522D00A28928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 				785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */,
 				785CF0192A3CC693008EE472 /* DialogBodyCell.swift */,
 				785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */,
+				78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */,
 			);
 			path = Homeworks;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				785CF0182A3CC4A1008EE472 /* DialogTitleCell.swift in Sources */,
 				78440F942A3A4D3100417547 /* UserProfileViewController.swift in Sources */,
 				785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */,
+				78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */,
 				78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */,
 				785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */,
 				78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */,

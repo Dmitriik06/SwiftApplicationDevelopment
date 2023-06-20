@@ -12,6 +12,10 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     private var session = URLSession.shared
     
+    private var userID: String?
+    
+    private var userToken: String?
+    
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
@@ -65,9 +69,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        webView.frame = CGRect(x: 10, y: 10, width: 300, height: 300)
+//        webView.frame = CGRect(x: 10, y: 10, width: 300, height: 600)
         webView.load(request)
-//        setupConstraints()
+        setupConstraints()
         view.backgroundColor = .gray
 //        addEnterButtonTarget()
     }
@@ -87,32 +91,38 @@ class ViewController: UIViewController, WKNavigationDelegate {
         loginTextField.translatesAutoresizingMaskIntoConstraints = false
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
         enterButton.translatesAutoresizingMaskIntoConstraints = false
+        webView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            topImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            topImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topImage.heightAnchor.constraint(equalToConstant: view.frame.width / 4),
-            topImage.widthAnchor.constraint(equalToConstant: view.frame.width / 4),
+//            topImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+//            topImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            topImage.heightAnchor.constraint(equalToConstant: view.frame.width / 4),
+//            topImage.widthAnchor.constraint(equalToConstant: view.frame.width / 4),
+//
+//            topLabel.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 5),
+//            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            topLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
+//            topLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
+//
+//            loginTextField.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 5),
+//            loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            loginTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
+//            loginTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
+//
+//            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 5),
+//            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
+//            passwordTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
+//
+//            enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 5),
+//            enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//            enterButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
+//            enterButton.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
             
-            topLabel.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 5),
-            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            topLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-            topLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-            
-            loginTextField.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 5),
-            loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            loginTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-            loginTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-            
-            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 5),
-            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-            passwordTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-            
-            enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 5),
-            enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            enterButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-            enterButton.heightAnchor.constraint(equalToConstant: view.frame.height / 15)
+            webView.topAnchor.constraint(equalTo: view.topAnchor),
+            webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
     
@@ -136,17 +146,34 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 dict[key] = value
                 return dict
             }
-        let token = params["access_token"]
-        let userID = params["user_id"]
-        print(token!)
+        userToken = params["access_token"]
+        userID = params["user_id"]
+        print(userToken!)
         print(userID!)
+        getData(token: userToken!)
         decisionHandler(.cancel)
         webView.removeFromSuperview()
+        navigationController?.pushViewController(UserProfileViewController(), animated: true)
     }
     
     @objc func clickOnEnterButton(){
         navigationController?.pushViewController(UserProfileViewController(), animated: true)
     }
     
+    func getData(token: String){
+        let url: URL? = URL(string: "https://api.vk.com/method/messages.getConversations?count=1" + "&access_token=" + token)
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let conversation = try JSONDecoder().decode(ConversationModel.self, from: data)
+                print(conversation)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
 }
 
