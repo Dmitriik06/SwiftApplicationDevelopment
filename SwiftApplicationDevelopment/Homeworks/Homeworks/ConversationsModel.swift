@@ -14,7 +14,7 @@ struct ConversationModel: Codable {
     
     var unreadCount: Int
     
-    var profiles: [User]
+    var profiles: [UserModel]
     
     var groups: [Group]
     
@@ -60,70 +60,86 @@ struct Conversation: Codable {
     
 }
 
-struct User: Codable {
-    var id: Int
-    
-    var firstName: String
-    
-    var lastName: String
-    
-    var deactivated: String
-    
-    var isClosed: Bool
-    
-    var canAccessClosed: Bool
+struct UserModel: Codable {
+    var response: [User]
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case firstName = "first_name"
-        case lastName = "last_name"
-        case deactivated
-        case isClosed = "is_closed"
-        case canAccessClosed = "can_access_closed"
+        case response
+    }
+    
+    struct User: Codable {
+        var id: Int
+        
+        var firstName: String
+        
+        var lastName: String
+        
+        var deactivated: String?
+        
+        var isClosed: Bool
+        
+        var canAccessClosed: Bool
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case firstName = "first_name"
+            case lastName = "last_name"
+            case deactivated
+            case isClosed = "is_closed"
+            case canAccessClosed = "can_access_closed"
+        }
     }
 }
 
 struct Group: Codable {
-    var id: Int
-    
-    var name: String
-    
-    var screenName: String
-    
-    var isClosed: Int
-    
-    var deactivated: String
-    
-    var isAdmin: Int
-    
-    var adminLevel: Int
-    
-    var isAdvertiser: Int
-    
-    var invitedBy: Int
-    
-    var type: String
-    
-    var photo50: String
-    
-    var photo100: String
-    
-    var photo200: String
+    var response: [GroupM]
     
     enum CodingKeys: String, CodingKey {
-        case id
-        case name
-        case screenName = "screen_name"
-        case isClosed = "is_closed"
-        case deactivated
-        case isAdmin = "is_admin"
-        case adminLevel = "admin_level"
-        case isAdvertiser = "is_advertiser"
-        case invitedBy = "invited_by"
-        case type
-        case photo50 = "photo_50"
-        case photo100 = "photo_100"
-        case photo200 = "photo_200"
+        case response
+    }
+    
+    struct GroupM: Codable {
+        var id: Int
+        
+        var name: String
+        
+        var screenName: String
+        
+        var isClosed: Int
+        
+        var deactivated: String
+        
+        var isAdmin: Int
+        
+        var adminLevel: Int
+        
+        var isAdvertiser: Int
+        
+        var invitedBy: Int
+        
+        var type: String
+        
+        var photo50: String
+        
+        var photo100: String
+        
+        var photo200: String
+        
+        enum CodingKeys: String, CodingKey {
+            case id
+            case name
+            case screenName = "screen_name"
+            case isClosed = "is_closed"
+            case deactivated
+            case isAdmin = "is_admin"
+            case adminLevel = "admin_level"
+            case isAdvertiser = "is_advertiser"
+            case invitedBy = "invited_by"
+            case type
+            case photo50 = "photo_50"
+            case photo100 = "photo_100"
+            case photo200 = "photo_200"
+        }
     }
 }
 

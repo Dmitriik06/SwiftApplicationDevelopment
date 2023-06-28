@@ -12,9 +12,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     private var session = URLSession.shared
     
-    private var userID: String?
+    static var userID: String = ""
     
-    private var userToken: String?
+    static var userToken: String = ""
+    
+    static var friendsCount: Int = 0
     
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
@@ -22,112 +24,30 @@ class ViewController: UIViewController, WKNavigationDelegate {
         return webView
     }()
     
-    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51679394&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
-    
-    var topImage = UIImageView(image: UIImage(systemName: "lock"))
-    
-    var topLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Authorization"
-        label.textColor = .blue
-        label.backgroundColor = .cyan
-        label.textAlignment = .center
-        return label
-    }()
-    
-    var loginTextField: UITextField = {
-        let textField = UITextField()
-        textField.text = "Login"
-        textField.textAlignment = .center
-        textField.keyboardType = .numberPad
-        textField.textColor = .gray
-        textField.backgroundColor = .white
-        textField.borderStyle = .line
-        return textField
-    }()
-    
-    var passwordTextField: UITextField = {
-        let textField = UITextField()
-        textField.text = "Password"
-        textField.textAlignment = .center
-        textField.keyboardType = .numberPad
-        textField.textColor = .gray
-        textField.backgroundColor = .white
-        textField.borderStyle = .line
-        return textField
-    }()
-    
-    var enterButton: UIButton = {
-        let button = UIButton()
-        button.setTitle("Enter", for: .normal)
-        button.setTitleColor(.black, for: .normal)
-        button.setTitleColor(.blue, for: .highlighted)
-        button.backgroundColor = .cyan
-        return button
-    }()
+    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51689770&scope=262150&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-//        webView.frame = CGRect(x: 10, y: 10, width: 300, height: 600)
+        webView.frame = CGRect(x: 10, y: 10, width: 300, height: 600)
         webView.load(request)
         setupConstraints()
         view.backgroundColor = .gray
-//        addEnterButtonTarget()
     }
     
     func setupViews(){
         view.addSubview(webView)
-//        view.addSubview(topImage)
-//        view.addSubview(topLabel)
-//        view.addSubview(loginTextField)
-//        view.addSubview(passwordTextField)
-//        view.addSubview(enterButton)
     }
     
     func setupConstraints(){
-        topImage.translatesAutoresizingMaskIntoConstraints = false
-        topLabel.translatesAutoresizingMaskIntoConstraints = false
-        loginTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        enterButton.translatesAutoresizingMaskIntoConstraints = false
         webView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-//            topImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-//            topImage.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            topImage.heightAnchor.constraint(equalToConstant: view.frame.width / 4),
-//            topImage.widthAnchor.constraint(equalToConstant: view.frame.width / 4),
-//
-//            topLabel.topAnchor.constraint(equalTo: topImage.bottomAnchor, constant: 5),
-//            topLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            topLabel.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-//            topLabel.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-//
-//            loginTextField.topAnchor.constraint(equalTo: topLabel.bottomAnchor, constant: 5),
-//            loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            loginTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-//            loginTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-//
-//            passwordTextField.topAnchor.constraint(equalTo: loginTextField.bottomAnchor, constant: 5),
-//            passwordTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            passwordTextField.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-//            passwordTextField.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-//
-//            enterButton.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 5),
-//            enterButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            enterButton.widthAnchor.constraint(equalToConstant: view.frame.width / 1.5),
-//            enterButton.heightAnchor.constraint(equalToConstant: view.frame.height / 15),
-            
             webView.topAnchor.constraint(equalTo: view.topAnchor),
             webView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             webView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             webView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
-    }
-    
-    private func addEnterButtonTarget(){
-        enterButton.addTarget(self, action: #selector(clickOnEnterButton), for: .touchUpInside)
     }
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationResponse: WKNavigationResponse, decisionHandler: @escaping (WKNavigationResponsePolicy) -> Void) {
@@ -146,30 +66,77 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 dict[key] = value
                 return dict
             }
-        userToken = params["access_token"]
-        userID = params["user_id"]
-        print(userToken!)
-        print(userID!)
-        getData(token: userToken!)
+        ViewController.userToken = params["access_token"] ?? ""
+        ViewController.userID = params["user_id"] ?? ""
         decisionHandler(.cancel)
         webView.removeFromSuperview()
-        navigationController?.pushViewController(UserProfileViewController(), animated: true)
+        navigationController?.pushViewController(FriendsViewController(), animated: true)
     }
     
-    @objc func clickOnEnterButton(){
-        navigationController?.pushViewController(UserProfileViewController(), animated: true)
-    }
-    
-    func getData(token: String){
-        let url: URL? = URL(string: "https://api.vk.com/method/messages.getConversations?count=1" + "&access_token=" + token)
+    func getFriends(handler: @escaping (FriendsListModel) -> Void){
+        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
                 return
             }
             do {
-                let conversation = try JSONDecoder().decode(ConversationModel.self, from: data)
-                print(conversation)
+                let friendsList = try JSONDecoder().decode(FriendsModel.self, from: data)
+                handler(friendsList.response)
+//                print(friendsList.response.items)
+                ViewController.friendsCount = friendsList.response.count
+                print(ViewController.friendsCount)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getFriend(friendId: Int){
+        let request: String = "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131"
+        let url: URL? = URL(string: request)
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let friend = try JSONDecoder().decode(UserModel.self, from: data)
+                print(friend.response[0].lastName + " " + friend.response[0].firstName)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getGroups(){
+        let request: String = "https://api.vk.com/method/groups.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131"
+        let url: URL? = URL(string: request)
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let groupsList = try JSONDecoder().decode(GroupsModel.self, from: data)
+                print(groupsList)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getGroup(groupId: Int){
+        let request: String = "https://api.vk.com/method/groups.getById?group_id=" + String(groupId) + "&access_token=" + ViewController.userToken + "&v=5.131"
+        let url: URL? = URL(string: request)
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let group = try JSONDecoder().decode(Group.self, from: data)
+                print(group)
             } catch {
                 print(error)
             }
