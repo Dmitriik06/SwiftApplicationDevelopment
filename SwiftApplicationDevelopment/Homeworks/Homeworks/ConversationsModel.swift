@@ -74,19 +74,10 @@ struct UserModel: Codable {
         
         var lastName: String
         
-        var deactivated: String?
-        
-        var isClosed: Bool
-        
-        var canAccessClosed: Bool
-        
         enum CodingKeys: String, CodingKey {
             case id
             case firstName = "first_name"
             case lastName = "last_name"
-            case deactivated
-            case isClosed = "is_closed"
-            case canAccessClosed = "can_access_closed"
         }
     }
 }

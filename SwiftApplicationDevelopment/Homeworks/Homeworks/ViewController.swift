@@ -24,7 +24,7 @@ class ViewController: UIViewController, WKNavigationDelegate {
         return webView
     }()
     
-    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51689770&scope=262150&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
+    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51679394&scope=262150&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +73,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
         navigationController?.pushViewController(FriendsViewController(), animated: true)
     }
     
-    func getFriends(handler: @escaping (FriendsListModel) -> Void){
+    func getFriends(handler: @escaping ([UserModel.User]) -> Void){
         let url: URL? = URL(string: "https://api.vk.com/method/friends.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        var friends: [UserModel.User] = []
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -82,7 +83,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
             do {
                 let friendsList = try JSONDecoder().decode(FriendsModel.self, from: data)
-                handler(friendsList.response)
+//                handler(friendsList.response)
+                friendsList.response.items.forEach { item in
+                    friends.append(self.getFriend(friendId: item))
+                }
+                handler(friends)
 //                print(friendsList.response.items)
                 ViewController.friendsCount = friendsList.response.count
                 print(ViewController.friendsCount)
@@ -92,21 +97,24 @@ class ViewController: UIViewController, WKNavigationDelegate {
         }.resume()
     }
     
-    func getFriend(friendId: Int){
+    func getFriend(friendId: Int) -> UserModel.User {
         let request: String = "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131"
         let url: URL? = URL(string: request)
+        var result: UserModel.User?
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
                 return
             }
             do {
-                let friend = try JSONDecoder().decode(UserModel.self, from: data)
-                print(friend.response[0].lastName + " " + friend.response[0].firstName)
+                let friend: UserModel = try JSONDecoder().decode(UserModel.self, from: data)
+                result = friend.response.first
+                print(friend.response.first?.firstName)
             } catch {
-                print(error)
+//                print(error)
             }
         }.resume()
+        return result ?? UserModel.User(id: 0, firstName: "xxx", lastName: "yyya")
     }
     
     func getGroups(){

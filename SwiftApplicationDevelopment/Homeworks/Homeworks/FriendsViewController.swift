@@ -11,7 +11,7 @@ class FriendsViewController: UITableViewController {
     
     private var viewController: ViewController = ViewController()
     
-    private var friends: [Int] = []
+    private var friends: [UserModel.User] = []
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -27,7 +27,7 @@ class FriendsViewController: UITableViewController {
         tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.title = "Friends"
         viewController.getFriends {[weak self] friendsList in
-            self?.friends = friendsList.items
+            self?.friends = friendsList
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -43,10 +43,15 @@ class FriendsViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UserProfileCell()
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        guard let cell = cell as? UserProfileCell else {
+            return UITableViewCell()
+        }
         cell.click = { dialog in
             self.navigationController?.pushViewController(DialogViewController(), animated: true)
         }
+        let user = friends[indexPath.row]
+        cell.setUserName(userModel: user)
         return cell
     }
 
