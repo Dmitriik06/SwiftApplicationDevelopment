@@ -18,6 +18,8 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     static var friendsCount: Int = 0
     
+    private var networkService: NetworkService = NetworkService()
+    
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
@@ -68,14 +70,15 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
         ViewController.userToken = params["access_token"] ?? ""
         ViewController.userID = params["user_id"] ?? ""
+        getFriends()
+        print(getFriend(friendId: 313126))
         decisionHandler(.cancel)
         webView.removeFromSuperview()
         navigationController?.pushViewController(FriendsViewController(), animated: true)
     }
     
-    func getFriends(handler: @escaping ([UserModel.User]) -> Void){
+    func getFriends(){
         let url: URL? = URL(string: "https://api.vk.com/method/friends.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
-        var friends: [UserModel.User] = []
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -83,23 +86,15 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
             do {
                 let friendsList = try JSONDecoder().decode(FriendsModel.self, from: data)
-//                handler(friendsList.response)
-                friendsList.response.items.forEach { item in
-                    friends.append(self.getFriend(friendId: item))
-                }
-                handler(friends)
-//                print(friendsList.response.items)
-                ViewController.friendsCount = friendsList.response.count
-                print(ViewController.friendsCount)
             } catch {
                 print(error)
             }
         }.resume()
     }
     
-    func getFriend(friendId: Int) -> UserModel.User {
-        let request: String = "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131"
-        let url: URL? = URL(string: request)
+    func getFriend(friendId: Int) {
+        let url: URL? = URL(string: "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131")
+        
         var result: UserModel.User?
         
         session.dataTask(with: url!) { (data,_,error) in
@@ -107,48 +102,13 @@ class ViewController: UIViewController, WKNavigationDelegate {
                 return
             }
             do {
-                let friend: UserModel = try JSONDecoder().decode(UserModel.self, from: data)
+                let friend = try JSONDecoder().decode(UserModel.self, from: data)
                 result = friend.response.first
-                print(friend.response.first?.firstName)
-            } catch {
-//                print(error)
-            }
-        }.resume()
-        return result ?? UserModel.User(id: 0, firstName: "xxx", lastName: "yyya")
-    }
-    
-    func getGroups(){
-        let request: String = "https://api.vk.com/method/groups.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131"
-        let url: URL? = URL(string: request)
-        
-        session.dataTask(with: url!) { (data,_,error) in
-            guard let data = data else {
-                return
-            }
-            do {
-                let groupsList = try JSONDecoder().decode(GroupsModel.self, from: data)
-                print(groupsList)
             } catch {
                 print(error)
             }
         }.resume()
     }
     
-    func getGroup(groupId: Int){
-        let request: String = "https://api.vk.com/method/groups.getById?group_id=" + String(groupId) + "&access_token=" + ViewController.userToken + "&v=5.131"
-        let url: URL? = URL(string: request)
-        
-        session.dataTask(with: url!) { (data,_,error) in
-            guard let data = data else {
-                return
-            }
-            do {
-                let group = try JSONDecoder().decode(Group.self, from: data)
-                print(group)
-            } catch {
-                print(error)
-            }
-        }.resume()
-    }
 }
 

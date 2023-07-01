@@ -13,15 +13,17 @@ struct FriendsModel: Codable {
     enum CodingKeys: String, CodingKey {
         case response
     }
-}
-
-struct FriendsListModel: Codable {
-    var count: Int
     
-    var items: [Int]
-    
-    enum CodingKeys: String, CodingKey {
-        case count
-        case items
+    struct FriendsListModel: Codable {
+        var count: Int
+        
+        var items: [Int]
+        
+        enum CodingKeys: String, CodingKey {
+            case count
+            case items
+        }
     }
 }
+
+

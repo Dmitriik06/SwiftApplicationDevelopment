@@ -17,6 +17,7 @@
 		788D6ECC2A4DF2D800275C9E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D6ECB2A4DF2D800275C9E /* TabBarController.swift */; };
 		78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */; };
 		78C12D642A44C57600C6E733 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C12D632A44C57600C6E733 /* FriendsModel.swift */; };
+		78E04A1C2A503BD40055C632 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E04A1B2A503BD40055C632 /* NetworkService.swift */; };
 		78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF162A36522D00A28928 /* AppDelegate.swift */; };
 		78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF182A36522D00A28928 /* SceneDelegate.swift */; };
 		78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78F0BF1A2A36522D00A28928 /* ViewController.swift */; };
@@ -35,6 +36,7 @@
 		788D6ECB2A4DF2D800275C9E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
 		78C12D632A44C57600C6E733 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
+		78E04A1B2A503BD40055C632 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		78F0BF132A36522D00A28928 /* Homeworks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Homeworks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78F0BF162A36522D00A28928 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		78F0BF182A36522D00A28928 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,6 +92,7 @@
 				78C12D632A44C57600C6E733 /* FriendsModel.swift */,
 				7883CDCC2A46022A00A6C16B /* GroupsModel.swift */,
 				788D6ECB2A4DF2D800275C9E /* TabBarController.swift */,
+				78E04A1B2A503BD40055C632 /* NetworkService.swift */,
 			);
 			path = Homeworks;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 				78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */,
 				785CF0162A3CB844008EE472 /* DialogViewController.swift in Sources */,
 				785CF0182A3CC4A1008EE472 /* DialogTitleCell.swift in Sources */,
+				78E04A1C2A503BD40055C632 /* NetworkService.swift in Sources */,
 				78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */,
 				785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */,
 				78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */,

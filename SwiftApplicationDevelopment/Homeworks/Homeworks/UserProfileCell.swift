@@ -78,8 +78,8 @@ class UserProfileCell: UITableViewCell {
         click?(tableView)
     }
     
-    func setUserName(userModel: UserModel.User){
-        titleLabel.text = userModel.firstName
-        descriptionLabel.text = userModel.lastName
+    func setUserName(id: Int){
+        titleLabel.text = String(id)
+        descriptionLabel.text = String(id)
     }
 }

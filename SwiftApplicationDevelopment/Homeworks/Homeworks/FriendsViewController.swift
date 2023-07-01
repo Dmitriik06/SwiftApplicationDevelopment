@@ -9,9 +9,11 @@ import UIKit
 
 class FriendsViewController: UITableViewController {
     
-    private var viewController: ViewController = ViewController()
+    private var networkService: NetworkService = NetworkService()
     
-    private var friends: [UserModel.User] = []
+    private var friends: [Int] = []
+    
+    private var friendsList: [UserModel.User] = []
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -26,7 +28,7 @@ class FriendsViewController: UITableViewController {
         view.backgroundColor = .white
         tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.title = "Friends"
-        viewController.getFriends {[weak self] friendsList in
+        networkService.getFriends {[weak self] friendsList in
             self?.friends = friendsList
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
@@ -50,8 +52,8 @@ class FriendsViewController: UITableViewController {
         cell.click = { dialog in
             self.navigationController?.pushViewController(DialogViewController(), animated: true)
         }
-        let user = friends[indexPath.row]
-        cell.setUserName(userModel: user)
+//        let user = friends[indexPath.row]
+        cell.setUserName(id: friends[indexPath.row])
         return cell
     }
 
