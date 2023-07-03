@@ -78,8 +78,18 @@ class UserProfileCell: UITableViewCell {
         click?(tableView)
     }
     
-    func setUserName(id: Int){
-        titleLabel.text = String(id)
-        descriptionLabel.text = String(id)
+    func setCellConfiguration(userModel: FriendModel){
+        titleLabel.text = (userModel.firstName ?? "") + " " + (userModel.lastName ?? "")
+        if let photoURL = userModel.photoURL,
+           let url = URL(string: photoURL) {
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.userImage.image = UIImage(data: data)
+                }
+            }
+        }
     }
 }

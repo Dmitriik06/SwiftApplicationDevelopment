@@ -18,8 +18,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     static var friendsCount: Int = 0
     
-    private var networkService: NetworkService = NetworkService()
-    
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
@@ -70,44 +68,29 @@ class ViewController: UIViewController, WKNavigationDelegate {
             }
         ViewController.userToken = params["access_token"] ?? ""
         ViewController.userID = params["user_id"] ?? ""
-        getFriends()
-        print(getFriend(friendId: 313126))
         decisionHandler(.cancel)
         webView.removeFromSuperview()
-        navigationController?.pushViewController(FriendsViewController(), animated: true)
-    }
-    
-    func getFriends(){
-        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+//        navigationController?.pushViewController(FriendsViewController(), animated: true)
         
-        session.dataTask(with: url!) { (data,_,error) in
-            guard let data = data else {
-                return
-            }
-            do {
-                let friendsList = try JSONDecoder().decode(FriendsModel.self, from: data)
-            } catch {
-                print(error)
-            }
-        }.resume()
-    }
-    
-    func getFriend(friendId: Int) {
-        let url: URL? = URL(string: "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let tab1 = UINavigationController(rootViewController: FriendsViewController())
+        let tab2 = UINavigationController(rootViewController: GroupsViewController())
+        let tab3 = UINavigationController(rootViewController: PhotosViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+
+        tab1.tabBarItem.title = "Friends"
+        tab2.tabBarItem.title = "Groups"
+        tab3.tabBarItem.title = "Photos"
+
+        let controllers = [tab1, tab2, tab3]
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = controllers
         
-        var result: UserModel.User?
-        
-        session.dataTask(with: url!) { (data,_,error) in
-            guard let data = data else {
-                return
-            }
-            do {
-                let friend = try JSONDecoder().decode(UserModel.self, from: data)
-                result = friend.response.first
-            } catch {
-                print(error)
-            }
-        }.resume()
+        guard let firstScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let firstWindow = firstScene.windows.first else {
+            return
+        }
+
+        firstWindow.rootViewController =  tabBarController
     }
     
 }

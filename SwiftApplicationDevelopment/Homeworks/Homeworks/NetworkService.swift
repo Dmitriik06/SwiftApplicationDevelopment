@@ -7,11 +7,11 @@
 
 import Foundation
 
-class NetworkService {
+final class NetworkService {
     private var session = URLSession.shared
     
-    func getFriends(handler: @escaping ([Int]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+    func getFriends(handler: @escaping ([FriendModel]) -> Void){
+        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?fields=photo_50&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -26,18 +26,32 @@ class NetworkService {
         }.resume()
     }
     
-    func getFriend(friendId: Int) {
-        let url: URL? = URL(string: "https://api.vk.com/method/users.get?user_ids=" + String(friendId) + "&access_token=" + ViewController.userToken + "&v=5.131")
-        
-        var result: UserModel.User?
+    func getGroups(handler: @escaping ([GroupModel]) -> Void){
+        let url: URL? = URL(string: "https://api.vk.com/method/groups.get?extended=1&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
                 return
             }
             do {
-                let friend = try JSONDecoder().decode(UserModel.self, from: data)
-                result = friend.response.first
+                let groupsList = try JSONDecoder().decode(GroupsModel.self, from: data)
+                handler(groupsList.response.items)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
+    
+    func getPhotos(handler: @escaping ([PhotoModel]) -> Void){
+        let url: URL? = URL(string: "https://api.vk.com/method/photos.get?photo_sizes=1&album_id=profile&owner_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let photosList = try JSONDecoder().decode(PhotosModel.self, from: data)
+                handler(photosList.response.items)
             } catch {
                 print(error)
             }

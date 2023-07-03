@@ -19,10 +19,20 @@ struct GroupsModel: Codable {
 struct GroupsListModel: Codable {
     var count: Int
     
-    var items: [Group]
+    var items: [GroupModel]
     
     enum CodingKeys: String, CodingKey {
         case count
         case items
+    }
+}
+
+struct GroupModel: Codable {
+    var name: String?
+    var description: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case description
     }
 }

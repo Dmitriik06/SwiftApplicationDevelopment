@@ -11,9 +11,7 @@ class FriendsViewController: UITableViewController {
     
     private var networkService: NetworkService = NetworkService()
     
-    private var friends: [Int] = []
-    
-    private var friendsList: [UserModel.User] = []
+    private var friends: [FriendModel] = []
     
     var titleLabel: UILabel = {
         let label = UILabel()
@@ -28,16 +26,12 @@ class FriendsViewController: UITableViewController {
         view.backgroundColor = .white
         tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.title = "Friends"
-        networkService.getFriends {[weak self] friendsList in
-            self?.friends = friendsList
+        networkService.getFriends {[weak self] friends in
+            self?.friends = friends
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
-    }
-    
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -52,8 +46,8 @@ class FriendsViewController: UITableViewController {
         cell.click = { dialog in
             self.navigationController?.pushViewController(DialogViewController(), animated: true)
         }
-//        let user = friends[indexPath.row]
-        cell.setUserName(id: friends[indexPath.row])
+        let user = friends[indexPath.row]
+        cell.setCellConfiguration(userModel: user)
         return cell
     }
 
