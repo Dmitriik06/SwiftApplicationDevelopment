@@ -14,12 +14,10 @@
 		785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0192A3CC693008EE472 /* DialogBodyCell.swift */; };
 		785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */; };
 		7883CDCD2A46022A00A6C16B /* GroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883CDCC2A46022A00A6C16B /* GroupsModel.swift */; };
-		788D6ECC2A4DF2D800275C9E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788D6ECB2A4DF2D800275C9E /* TabBarController.swift */; };
 		788E331B2A51FF1700923901 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331A2A51FF1700923901 /* GroupsViewController.swift */; };
 		788E331D2A51FFFA00923901 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331C2A51FFFA00923901 /* PhotosViewController.swift */; };
 		788E331F2A52028100923901 /* GroupCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331E2A52028100923901 /* GroupCell.swift */; };
 		788E33212A5202D100923901 /* PhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E33202A5202D100923901 /* PhotoCell.swift */; };
-		78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */; };
 		78C12D642A44C57600C6E733 /* FriendsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78C12D632A44C57600C6E733 /* FriendsModel.swift */; };
 		78E04A1C2A503BD40055C632 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E04A1B2A503BD40055C632 /* NetworkService.swift */; };
 		78E84A4F2A5217A5003C4134 /* PhotosModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E84A4E2A5217A5003C4134 /* PhotosModel.swift */; };
@@ -38,12 +36,10 @@
 		785CF0192A3CC693008EE472 /* DialogBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBodyCell.swift; sourceTree = "<group>"; };
 		785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBottomCell.swift; sourceTree = "<group>"; };
 		7883CDCC2A46022A00A6C16B /* GroupsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsModel.swift; sourceTree = "<group>"; };
-		788D6ECB2A4DF2D800275C9E /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		788E331A2A51FF1700923901 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		788E331C2A51FFFA00923901 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
 		788E331E2A52028100923901 /* GroupCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupCell.swift; sourceTree = "<group>"; };
 		788E33202A5202D100923901 /* PhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoCell.swift; sourceTree = "<group>"; };
-		78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationsModel.swift; sourceTree = "<group>"; };
 		78C12D632A44C57600C6E733 /* FriendsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsModel.swift; sourceTree = "<group>"; };
 		78E04A1B2A503BD40055C632 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		78E84A4E2A5217A5003C4134 /* PhotosModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosModel.swift; sourceTree = "<group>"; };
@@ -92,21 +88,19 @@
 				78F0BF1F2A36522E00A28928 /* Assets.xcassets */,
 				78F0BF212A36522E00A28928 /* LaunchScreen.storyboard */,
 				78F0BF242A36522E00A28928 /* Info.plist */,
+				78E04A1B2A503BD40055C632 /* NetworkService.swift */,
 				78440F932A3A4D3100417547 /* FriendsViewController.swift */,
-				78440F952A3A4F4100417547 /* UserProfileCell.swift */,
 				785CF0152A3CB844008EE472 /* DialogViewController.swift */,
+				788E331A2A51FF1700923901 /* GroupsViewController.swift */,
+				788E331C2A51FFFA00923901 /* PhotosViewController.swift */,
+				78440F952A3A4F4100417547 /* UserProfileCell.swift */,
 				785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */,
 				785CF0192A3CC693008EE472 /* DialogBodyCell.swift */,
 				785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */,
-				78AF711D2A41AE3A00027B4F /* ConversationsModel.swift */,
-				78C12D632A44C57600C6E733 /* FriendsModel.swift */,
-				7883CDCC2A46022A00A6C16B /* GroupsModel.swift */,
-				788D6ECB2A4DF2D800275C9E /* TabBarController.swift */,
-				78E04A1B2A503BD40055C632 /* NetworkService.swift */,
-				788E331A2A51FF1700923901 /* GroupsViewController.swift */,
-				788E331C2A51FFFA00923901 /* PhotosViewController.swift */,
 				788E331E2A52028100923901 /* GroupCell.swift */,
 				788E33202A5202D100923901 /* PhotoCell.swift */,
+				78C12D632A44C57600C6E733 /* FriendsModel.swift */,
+				7883CDCC2A46022A00A6C16B /* GroupsModel.swift */,
 				78E84A4E2A5217A5003C4134 /* PhotosModel.swift */,
 			);
 			path = Homeworks;
@@ -184,7 +178,6 @@
 			files = (
 				78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */,
 				788E331D2A51FFFA00923901 /* PhotosViewController.swift in Sources */,
-				788D6ECC2A4DF2D800275C9E /* TabBarController.swift in Sources */,
 				788E331F2A52028100923901 /* GroupCell.swift in Sources */,
 				78C12D642A44C57600C6E733 /* FriendsModel.swift in Sources */,
 				78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */,
@@ -194,7 +187,6 @@
 				78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */,
 				788E33212A5202D100923901 /* PhotoCell.swift in Sources */,
 				785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */,
-				78AF711E2A41AE3A00027B4F /* ConversationsModel.swift in Sources */,
 				78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */,
 				7883CDCD2A46022A00A6C16B /* GroupsModel.swift in Sources */,
 				785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */,

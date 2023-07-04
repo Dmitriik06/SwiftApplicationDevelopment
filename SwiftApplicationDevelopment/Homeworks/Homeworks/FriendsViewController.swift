@@ -34,6 +34,16 @@ class FriendsViewController: UITableViewController {
         }
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.5, delay: 0, options: [], animations: {
+            self.tableView.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
+        })
+        UIView.animate(withDuration: 0.5, delay: 0.5, options: [], animations: {
+            self.tableView.transform = CGAffineTransform(scaleX: 1, y: 1)
+        })
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         friends.count
     }
