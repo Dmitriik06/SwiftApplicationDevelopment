@@ -17,18 +17,8 @@ class UserProfileCell: UITableViewCell {
     
     var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Text"
+        label.text = "Name"
         label.textColor = .black
-        label.backgroundColor = .cyan
-        return label
-    }()
-    
-    var descriptionLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit..."
-        label.numberOfLines = 0
-        label.textColor = .black
-        label.backgroundColor = .cyan
         return label
     }()
     
@@ -46,17 +36,14 @@ class UserProfileCell: UITableViewCell {
     func setupViews(){
         contentView.addSubview(userImage)
         contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
         setupConstraints()
     }
     
     func setupConstraints(){
         userImage.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-        
             userImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor),
             userImage.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             userImage.widthAnchor.constraint(equalToConstant: frame.size.width / 5),
@@ -64,13 +51,7 @@ class UserProfileCell: UITableViewCell {
             
             titleLabel.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 5),
             titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
-            titleLabel.heightAnchor.constraint(equalToConstant: 15),
-            
-            descriptionLabel.leadingAnchor.constraint(equalTo: userImage.trailingAnchor, constant: 5),
-            descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -5),
-            descriptionLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
-            descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
-        
+            titleLabel.heightAnchor.constraint(equalToConstant: 15)
         ])
     }
     

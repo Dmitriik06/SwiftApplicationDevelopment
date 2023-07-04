@@ -27,7 +27,7 @@ final class NetworkService {
     }
     
     func getGroups(handler: @escaping ([GroupModel]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/groups.get?extended=1&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let url: URL? = URL(string: "https://api.vk.com/method/groups.get?extended=1&fields=description&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {

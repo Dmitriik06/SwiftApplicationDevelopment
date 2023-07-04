@@ -66,5 +66,17 @@ final class GroupCell: UITableViewCell {
     
     func setCellConfiguration(groupModel: GroupModel){
         title.text = groupModel.name ?? "error"
+        subtitle.text = groupModel.description ?? "error"
+        if let photoURL = groupModel.photoURL,
+           let url = URL(string: photoURL) {
+            DispatchQueue.global().async {
+                guard let data = try? Data(contentsOf: url) else {
+                    return
+                }
+                DispatchQueue.main.async {
+                    self.groupImageView.image = UIImage(data: data)
+                }
+            }
+        }
     }
 }

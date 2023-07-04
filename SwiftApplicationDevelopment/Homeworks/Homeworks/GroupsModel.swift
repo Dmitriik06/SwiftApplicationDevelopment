@@ -30,9 +30,11 @@ struct GroupsListModel: Codable {
 struct GroupModel: Codable {
     var name: String?
     var description: String?
+    var photoURL: String?
     
     enum CodingKeys: String, CodingKey {
         case name
         case description
+        case photoURL = "photo_50"
     }
 }
