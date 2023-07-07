@@ -15,6 +15,7 @@ final class PhotosViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
         title = "Photos"
         collectionView.register(PhotoCell.self, forCellWithReuseIdentifier: "PhotoCell")
         networkService.getPhotos { [weak self] photos in
@@ -23,6 +24,11 @@ final class PhotosViewController: UICollectionViewController {
                 self?.collectionView.reloadData()
             }
         }
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.backgroundColor = ColorTheme.currentTheme.backgroundColor
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

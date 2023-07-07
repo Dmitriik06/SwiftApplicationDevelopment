@@ -18,12 +18,13 @@ class UserProfileCell: UITableViewCell {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        label.textColor = .black
+        label.textColor = ColorTheme.currentTheme.textColor
         return label
     }()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        backgroundColor = .clear
         setupViews()
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(clickOnCell))
         addGestureRecognizer(recognizer)
@@ -31,6 +32,11 @@ class UserProfileCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        accessoryType = .none
     }
     
     func setupViews(){

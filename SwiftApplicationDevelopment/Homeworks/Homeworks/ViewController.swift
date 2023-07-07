@@ -16,8 +16,6 @@ class ViewController: UIViewController, WKNavigationDelegate {
     
     static var userToken: String = ""
     
-    static var friendsCount: Int = 0
-    
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
@@ -28,11 +26,17 @@ class ViewController: UIViewController, WKNavigationDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
         setupViews()
         webView.frame = CGRect(x: 10, y: 10, width: 300, height: 600)
         webView.load(request)
         setupConstraints()
         view.backgroundColor = .gray
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
     }
     
     func setupViews(){
@@ -75,12 +79,14 @@ class ViewController: UIViewController, WKNavigationDelegate {
         let tab1 = UINavigationController(rootViewController: FriendsViewController())
         let tab2 = UINavigationController(rootViewController: GroupsViewController())
         let tab3 = UINavigationController(rootViewController: PhotosViewController(collectionViewLayout: UICollectionViewFlowLayout()))
+        let tab4 = UINavigationController(rootViewController: UserProfileViewController())
 
         tab1.tabBarItem.title = "Friends"
         tab2.tabBarItem.title = "Groups"
         tab3.tabBarItem.title = "Photos"
+        tab4.tabBarItem.title = "My profile"
 
-        let controllers = [tab1, tab2, tab3]
+        let controllers = [tab1, tab2, tab3, tab4]
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = controllers

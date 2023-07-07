@@ -13,6 +13,7 @@ final class PhotoCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .clear
         setupViews()
     }
     

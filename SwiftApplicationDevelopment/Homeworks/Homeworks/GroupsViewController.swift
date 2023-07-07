@@ -16,8 +16,8 @@ final class GroupsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Groups"
-        view.backgroundColor = .blue
-        tableView.backgroundColor = .white
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
+        tableView.backgroundColor = ColorTheme.currentTheme.backgroundColor
         navigationController?.navigationBar.tintColor = .black
         navigationController?.navigationBar.barTintColor = .black
         tableView.register(GroupCell.self, forCellReuseIdentifier: "cell2")
@@ -27,6 +27,12 @@ final class GroupsViewController: UITableViewController {
                 self?.tableView.reloadData()
             }
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.backgroundColor = ColorTheme.currentTheme.backgroundColor
+        tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -40,6 +46,8 @@ final class GroupsViewController: UITableViewController {
         }
         let group = groups[indexPath.row]
         cell.setCellConfiguration(groupModel: group)
+        cell.title.textColor = ColorTheme.currentTheme.textColor
+        cell.subtitle.textColor = ColorTheme.currentTheme.textColor
         return cell
     }
 }

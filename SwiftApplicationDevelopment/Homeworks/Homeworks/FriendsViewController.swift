@@ -16,14 +16,14 @@ class FriendsViewController: UITableViewController {
     var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Friends"
-        label.textColor = .black
+        label.textColor = ColorTheme.currentTheme.textColor
         label.textAlignment = .center
         return label
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
         tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
         self.navigationItem.title = "Friends"
         networkService.getFriends {[weak self] friends in
@@ -44,6 +44,12 @@ class FriendsViewController: UITableViewController {
         })
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        view.backgroundColor = ColorTheme.currentTheme.backgroundColor
+        tableView.reloadData()
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         friends.count
     }
@@ -53,11 +59,14 @@ class FriendsViewController: UITableViewController {
         guard let cell = cell as? UserProfileCell else {
             return UITableViewCell()
         }
-        cell.click = { dialog in
-            self.navigationController?.pushViewController(DialogViewController(), animated: true)
+        cell.click = { friend in
+            var friendProfileViewController = FriendProfileViewController()
+            friendProfileViewController.setFriendData(friendData: self.friends[indexPath.row] )
+            self.navigationController?.pushViewController(friendProfileViewController, animated: true)
         }
         let user = friends[indexPath.row]
         cell.setCellConfiguration(userModel: user)
+        cell.titleLabel.textColor = ColorTheme.currentTheme.textColor
         return cell
     }
 

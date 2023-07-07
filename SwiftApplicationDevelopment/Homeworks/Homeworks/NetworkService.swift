@@ -57,4 +57,20 @@ final class NetworkService {
             }
         }.resume()
     }
+    
+    func getUserProfile(handler: @escaping ([FriendModel]) -> Void){
+        let url: URL? = URL(string: "https://api.vk.com/method/users.get?fields=photo_50,first_name,last_name" + "&access_token=" + ViewController.userToken + "&v=5.131")
+        
+        session.dataTask(with: url!) { (data,_,error) in
+            guard let data = data else {
+                return
+            }
+            do {
+                let userProfile = try JSONDecoder().decode(UserProfileModel.self, from: data)
+                handler(userProfile.response)
+            } catch {
+                print(error)
+            }
+        }.resume()
+    }
 }

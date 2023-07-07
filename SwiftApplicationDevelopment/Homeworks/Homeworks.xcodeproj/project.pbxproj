@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		781E05692A55F45400D45486 /* UserProvileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E05682A55F45400D45486 /* UserProvileViewController.swift */; };
+		781E056B2A56C26200D45486 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E056A2A56C26200D45486 /* UserProfileModel.swift */; };
+		781E056D2A5732E400D45486 /* FriendProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E056C2A5732E400D45486 /* FriendProfileViewController.swift */; };
+		781E056F2A573FCF00D45486 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E056E2A573FCF00D45486 /* ColorTheme.swift */; };
 		78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F932A3A4D3100417547 /* FriendsViewController.swift */; };
 		78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F952A3A4F4100417547 /* UserProfileCell.swift */; };
-		785CF0162A3CB844008EE472 /* DialogViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0152A3CB844008EE472 /* DialogViewController.swift */; };
-		785CF0182A3CC4A1008EE472 /* DialogTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */; };
-		785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF0192A3CC693008EE472 /* DialogBodyCell.swift */; };
-		785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */; };
 		7883CDCD2A46022A00A6C16B /* GroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883CDCC2A46022A00A6C16B /* GroupsModel.swift */; };
 		788E331B2A51FF1700923901 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331A2A51FF1700923901 /* GroupsViewController.swift */; };
 		788E331D2A51FFFA00923901 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331C2A51FFFA00923901 /* PhotosViewController.swift */; };
@@ -29,12 +29,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		781E05682A55F45400D45486 /* UserProvileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProvileViewController.swift; sourceTree = "<group>"; };
+		781E056A2A56C26200D45486 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		781E056C2A5732E400D45486 /* FriendProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendProfileViewController.swift; sourceTree = "<group>"; };
+		781E056E2A573FCF00D45486 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		78440F932A3A4D3100417547 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		78440F952A3A4F4100417547 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
-		785CF0152A3CB844008EE472 /* DialogViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogViewController.swift; sourceTree = "<group>"; };
-		785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogTitleCell.swift; sourceTree = "<group>"; };
-		785CF0192A3CC693008EE472 /* DialogBodyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBodyCell.swift; sourceTree = "<group>"; };
-		785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DialogBottomCell.swift; sourceTree = "<group>"; };
 		7883CDCC2A46022A00A6C16B /* GroupsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsModel.swift; sourceTree = "<group>"; };
 		788E331A2A51FF1700923901 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		788E331C2A51FFFA00923901 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -90,18 +90,18 @@
 				78F0BF242A36522E00A28928 /* Info.plist */,
 				78E04A1B2A503BD40055C632 /* NetworkService.swift */,
 				78440F932A3A4D3100417547 /* FriendsViewController.swift */,
-				785CF0152A3CB844008EE472 /* DialogViewController.swift */,
 				788E331A2A51FF1700923901 /* GroupsViewController.swift */,
 				788E331C2A51FFFA00923901 /* PhotosViewController.swift */,
+				781E05682A55F45400D45486 /* UserProvileViewController.swift */,
+				781E056C2A5732E400D45486 /* FriendProfileViewController.swift */,
 				78440F952A3A4F4100417547 /* UserProfileCell.swift */,
-				785CF0172A3CC4A1008EE472 /* DialogTitleCell.swift */,
-				785CF0192A3CC693008EE472 /* DialogBodyCell.swift */,
-				785CF01B2A3CCA2C008EE472 /* DialogBottomCell.swift */,
 				788E331E2A52028100923901 /* GroupCell.swift */,
 				788E33202A5202D100923901 /* PhotoCell.swift */,
 				78C12D632A44C57600C6E733 /* FriendsModel.swift */,
 				7883CDCC2A46022A00A6C16B /* GroupsModel.swift */,
 				78E84A4E2A5217A5003C4134 /* PhotosModel.swift */,
+				781E056A2A56C26200D45486 /* UserProfileModel.swift */,
+				781E056E2A573FCF00D45486 /* ColorTheme.swift */,
 			);
 			path = Homeworks;
 			sourceTree = "<group>";
@@ -176,21 +176,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				781E056D2A5732E400D45486 /* FriendProfileViewController.swift in Sources */,
 				78F0BF1B2A36522D00A28928 /* ViewController.swift in Sources */,
 				788E331D2A51FFFA00923901 /* PhotosViewController.swift in Sources */,
 				788E331F2A52028100923901 /* GroupCell.swift in Sources */,
 				78C12D642A44C57600C6E733 /* FriendsModel.swift in Sources */,
 				78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */,
-				785CF0162A3CB844008EE472 /* DialogViewController.swift in Sources */,
-				785CF0182A3CC4A1008EE472 /* DialogTitleCell.swift in Sources */,
 				78E04A1C2A503BD40055C632 /* NetworkService.swift in Sources */,
+				781E056F2A573FCF00D45486 /* ColorTheme.swift in Sources */,
+				781E056B2A56C26200D45486 /* UserProfileModel.swift in Sources */,
 				78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */,
 				788E33212A5202D100923901 /* PhotoCell.swift in Sources */,
-				785CF01A2A3CC693008EE472 /* DialogBodyCell.swift in Sources */,
 				78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */,
 				7883CDCD2A46022A00A6C16B /* GroupsModel.swift in Sources */,
-				785CF01C2A3CCA2C008EE472 /* DialogBottomCell.swift in Sources */,
 				78F0BF192A36522D00A28928 /* SceneDelegate.swift in Sources */,
+				781E05692A55F45400D45486 /* UserProvileViewController.swift in Sources */,
 				78E84A4F2A5217A5003C4134 /* PhotosModel.swift in Sources */,
 				788E331B2A51FF1700923901 /* GroupsViewController.swift in Sources */,
 			);

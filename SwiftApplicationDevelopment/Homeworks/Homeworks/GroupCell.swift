@@ -11,17 +11,17 @@ final class GroupCell: UITableViewCell {
     
     private var groupImageView = UIImageView(image: UIImage(systemName: "person"))
     
-    private var title: UILabel = {
+    var title: UILabel = {
         let label = UILabel()
         label.text = "Name"
-        label.textColor = .black
+        label.textColor = ColorTheme.currentTheme.textColor
         return label
     }()
 
-    private var subtitle: UILabel = {
+    var subtitle: UILabel = {
         let label = UILabel()
         label.text = "Description"
-        label.textColor = .gray
+        label.textColor = ColorTheme.currentTheme.textColor
         return label
     }()
     
@@ -33,6 +33,11 @@ final class GroupCell: UITableViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        accessoryType = .none
     }
     
     private func setupViews() {
