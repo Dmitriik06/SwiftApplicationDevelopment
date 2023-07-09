@@ -13,6 +13,7 @@
 		781E056F2A573FCF00D45486 /* ColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 781E056E2A573FCF00D45486 /* ColorTheme.swift */; };
 		78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F932A3A4D3100417547 /* FriendsViewController.swift */; };
 		78440F962A3A4F4100417547 /* UserProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78440F952A3A4F4100417547 /* UserProfileCell.swift */; };
+		784C334C2A5ABFB200E5DDEE /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784C334B2A5ABFB200E5DDEE /* DataService.swift */; };
 		7883CDCD2A46022A00A6C16B /* GroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7883CDCC2A46022A00A6C16B /* GroupsModel.swift */; };
 		788E331B2A51FF1700923901 /* GroupsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331A2A51FF1700923901 /* GroupsViewController.swift */; };
 		788E331D2A51FFFA00923901 /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 788E331C2A51FFFA00923901 /* PhotosViewController.swift */; };
@@ -35,6 +36,7 @@
 		781E056E2A573FCF00D45486 /* ColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTheme.swift; sourceTree = "<group>"; };
 		78440F932A3A4D3100417547 /* FriendsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewController.swift; sourceTree = "<group>"; };
 		78440F952A3A4F4100417547 /* UserProfileCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileCell.swift; sourceTree = "<group>"; };
+		784C334B2A5ABFB200E5DDEE /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		7883CDCC2A46022A00A6C16B /* GroupsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsModel.swift; sourceTree = "<group>"; };
 		788E331A2A51FF1700923901 /* GroupsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		788E331C2A51FFFA00923901 /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
@@ -89,6 +91,7 @@
 				78F0BF212A36522E00A28928 /* LaunchScreen.storyboard */,
 				78F0BF242A36522E00A28928 /* Info.plist */,
 				78E04A1B2A503BD40055C632 /* NetworkService.swift */,
+				784C334B2A5ABFB200E5DDEE /* DataService.swift */,
 				78440F932A3A4D3100417547 /* FriendsViewController.swift */,
 				788E331A2A51FF1700923901 /* GroupsViewController.swift */,
 				788E331C2A51FFFA00923901 /* PhotosViewController.swift */,
@@ -185,6 +188,7 @@
 				78E04A1C2A503BD40055C632 /* NetworkService.swift in Sources */,
 				781E056F2A573FCF00D45486 /* ColorTheme.swift in Sources */,
 				781E056B2A56C26200D45486 /* UserProfileModel.swift in Sources */,
+				784C334C2A5ABFB200E5DDEE /* DataService.swift in Sources */,
 				78440F942A3A4D3100417547 /* FriendsViewController.swift in Sources */,
 				788E33212A5202D100923901 /* PhotoCell.swift in Sources */,
 				78F0BF172A36522D00A28928 /* AppDelegate.swift in Sources */,

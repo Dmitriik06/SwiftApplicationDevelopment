@@ -13,6 +13,10 @@ class FriendsViewController: UITableViewController {
     
     private var friends: [FriendModel] = []
     
+    private var dataService = FriendsDataService()
+    
+    let tableRefreshControl = UIRefreshControl()
+    
     var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Friends"
@@ -23,11 +27,17 @@ class FriendsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableRefreshControl.attributedTitle = NSAttributedString(string: "Refreshing friends...")
+        tableRefreshControl.addTarget(self, action: #selector(self.tableRefresh(_:)), for: .valueChanged)
+        tableView.addSubview(tableRefreshControl)
         view.backgroundColor = ColorTheme.currentTheme.backgroundColor
         tableView.register(UserProfileCell.self, forCellReuseIdentifier: "cell")
+        friends = dataService.getData()
+        tableView.reloadData()
         self.navigationItem.title = "Friends"
         networkService.getFriends {[weak self] friends in
             self?.friends = friends
+            self?.dataService.putData(friends: friends)
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -70,4 +80,14 @@ class FriendsViewController: UITableViewController {
         return cell
     }
 
+    @objc func tableRefresh(_ sender: AnyObject){
+        networkService.getFriends {[weak self] friends in
+            self?.friends = friends
+            self?.dataService.putData(friends: friends)
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+        tableRefreshControl.endRefreshing()
+    }
 }
