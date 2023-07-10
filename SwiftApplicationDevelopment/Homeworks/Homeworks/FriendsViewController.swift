@@ -7,7 +7,7 @@
 
 import UIKit
 
-class FriendsViewController: UITableViewController {
+final class FriendsViewController: UITableViewController {
     
     private var networkService: NetworkService = NetworkService()
     
@@ -17,7 +17,7 @@ class FriendsViewController: UITableViewController {
     
     let tableRefreshControl = UIRefreshControl()
     
-    var titleLabel: UILabel = {
+    private var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Friends"
         label.textColor = ColorTheme.currentTheme.textColor
@@ -70,7 +70,7 @@ class FriendsViewController: UITableViewController {
             return UITableViewCell()
         }
         cell.click = { friend in
-            var friendProfileViewController = FriendProfileViewController()
+            let friendProfileViewController = FriendProfileViewController()
             friendProfileViewController.setFriendData(friendData: self.friends[indexPath.row] )
             self.navigationController?.pushViewController(friendProfileViewController, animated: true)
         }

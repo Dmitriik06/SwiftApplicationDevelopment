@@ -52,7 +52,7 @@ final class UserProfileViewController: UIViewController {
         view.reloadInputViews()
     }
     
-    func setupViews(){
+    private func setupViews(){
         view.addSubview(userName)
         view.addSubview(userProfilePhoto)
         view.addSubview(darkThemeButton)
@@ -60,7 +60,7 @@ final class UserProfileViewController: UIViewController {
         view.addSubview(blueThemeButton)
     }
     
-    func setupConstraints(){
+    private func setupConstraints(){
         userName.translatesAutoresizingMaskIntoConstraints = false
         userProfilePhoto.translatesAutoresizingMaskIntoConstraints = false
         darkThemeButton.translatesAutoresizingMaskIntoConstraints = false
@@ -100,7 +100,7 @@ final class UserProfileViewController: UIViewController {
         blueThemeButton.addTarget(self, action: #selector(clickOnButtonBlue), for: .touchUpInside)
     }
     
-    func setUserProfileViewConfiguration(userModel: FriendModel){
+    private func setUserProfileViewConfiguration(userModel: FriendModel){
         userName.text = (userModel.firstName ?? "") + " " + (userModel.lastName ?? "")
         if let photoURL = userModel.photoURL,
            let url = URL(string: photoURL) {

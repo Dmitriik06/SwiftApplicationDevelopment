@@ -15,7 +15,7 @@ final class GroupsViewController: UITableViewController {
     
     private var dataService = GroupsDataService()
     
-    let tableRefreshControl = UIRefreshControl()
+    private let tableRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()

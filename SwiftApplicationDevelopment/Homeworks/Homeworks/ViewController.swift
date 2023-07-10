@@ -8,28 +8,24 @@
 import UIKit
 import WebKit
 
-class ViewController: UIViewController, WKNavigationDelegate {
+final class ViewController: UIViewController, WKNavigationDelegate {
     
     private var session = URLSession.shared
     
-    static var userID: String = ""
-    
-    static var userToken: String = ""
+    private var networkService = NetworkService()
     
     private lazy var webView: WKWebView = {
         let webView = WKWebView()
         webView.navigationDelegate = self
         return webView
     }()
-    
-    var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51679394&scope=262150&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = ColorTheme.currentTheme.backgroundColor
         setupViews()
         webView.frame = CGRect(x: 10, y: 10, width: 300, height: 600)
-        webView.load(request)
+        webView.load(networkService.getAuthorizeRequest())
         setupConstraints()
         view.backgroundColor = .gray
     }
@@ -39,11 +35,11 @@ class ViewController: UIViewController, WKNavigationDelegate {
         view.backgroundColor = ColorTheme.currentTheme.backgroundColor
     }
     
-    func setupViews(){
+    private func setupViews(){
         view.addSubview(webView)
     }
     
-    func setupConstraints(){
+    private func setupConstraints(){
         webView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
@@ -60,21 +56,9 @@ class ViewController: UIViewController, WKNavigationDelegate {
             decisionHandler(.allow)
             return
         }
-        let params = fragment
-            .components(separatedBy: "&")
-            .map {$0.components(separatedBy: "=")}
-            .reduce([String: String]()) { result, param in
-                var dict = result
-                let key = param[0]
-                let value = param[1]
-                dict[key] = value
-                return dict
-            }
-        ViewController.userToken = params["access_token"] ?? ""
-        ViewController.userID = params["user_id"] ?? ""
+        networkService.receiveIDandToken(fragment: fragment)
         decisionHandler(.cancel)
         webView.removeFromSuperview()
-//        navigationController?.pushViewController(FriendsViewController(), animated: true)
         
         let tab1 = UINavigationController(rootViewController: FriendsViewController())
         let tab2 = UINavigationController(rootViewController: GroupsViewController())

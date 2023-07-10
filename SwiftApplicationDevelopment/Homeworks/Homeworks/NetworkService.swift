@@ -7,11 +7,36 @@
 
 import Foundation
 
-final class NetworkService {
+final class NetworkService: NetworkServiceProtocol {
     private var session = URLSession.shared
     
+    private static var userID: String = ""
+    
+    private static var userToken: String = ""
+    
+    private var request = URLRequest(url: URL(string: "https://oauth.vk.com/authorize?client_id=51679394&scope=262150&redirect_uri=https://vk.com/away.php?to=https://oauth.vk.com/blank.html&display=mobile&response_type=token")!)
+    
+    func getAuthorizeRequest() -> URLRequest {
+        return request
+    }
+    
+    func receiveIDandToken(fragment: String){
+        let params = fragment
+            .components(separatedBy: "&")
+            .map {$0.components(separatedBy: "=")}
+            .reduce([String: String]()) { result, param in
+                var dict = result
+                let key = param[0]
+                let value = param[1]
+                dict[key] = value
+                return dict
+            }
+        NetworkService.userToken = params["access_token"] ?? ""
+        NetworkService.userID = params["user_id"] ?? ""
+    }
+    
     func getFriends(handler: @escaping ([FriendModel]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?fields=photo_50&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let url: URL? = URL(string: "https://api.vk.com/method/friends.get?fields=photo_50&user_id=" + NetworkService.userID + "&access_token=" + NetworkService.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -27,7 +52,7 @@ final class NetworkService {
     }
     
     func getGroups(handler: @escaping ([GroupModel]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/groups.get?extended=1&fields=description&user_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let url: URL? = URL(string: "https://api.vk.com/method/groups.get?extended=1&fields=description&user_id=" + NetworkService.userID + "&access_token=" + NetworkService.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -43,7 +68,7 @@ final class NetworkService {
     }
     
     func getPhotos(handler: @escaping ([PhotoModel]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/photos.get?photo_sizes=1&album_id=profile&owner_id=" + ViewController.userID + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let url: URL? = URL(string: "https://api.vk.com/method/photos.get?photo_sizes=1&album_id=profile&owner_id=" + NetworkService.userID + "&access_token=" + NetworkService.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -59,7 +84,7 @@ final class NetworkService {
     }
     
     func getUserProfile(handler: @escaping ([FriendModel]) -> Void){
-        let url: URL? = URL(string: "https://api.vk.com/method/users.get?fields=photo_50,first_name,last_name" + "&access_token=" + ViewController.userToken + "&v=5.131")
+        let url: URL? = URL(string: "https://api.vk.com/method/users.get?fields=photo_50,first_name,last_name" + "&access_token=" + NetworkService.userToken + "&v=5.131")
         
         session.dataTask(with: url!) { (data,_,error) in
             guard let data = data else {
@@ -73,4 +98,8 @@ final class NetworkService {
             }
         }.resume()
     }
+}
+
+protocol NetworkServiceProtocol: AnyObject {
+    func getAuthorizeRequest() -> URLRequest
 }

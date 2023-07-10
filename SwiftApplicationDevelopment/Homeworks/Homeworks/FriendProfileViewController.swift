@@ -57,7 +57,7 @@ final class FriendProfileViewController: UIViewController {
         ])
     }
     
-    func setFriendProfileViewConfiguration(userModel: FriendModel){
+    private func setFriendProfileViewConfiguration(userModel: FriendModel){
         userName.text = (userModel.firstName ?? "") + " " + (userModel.lastName ?? "")
         if let photoURL = userModel.photoURL,
            let url = URL(string: photoURL) {

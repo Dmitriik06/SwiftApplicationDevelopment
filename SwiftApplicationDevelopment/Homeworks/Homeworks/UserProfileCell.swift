@@ -7,7 +7,7 @@
 
 import UIKit
 
-class UserProfileCell: UITableViewCell {
+final class UserProfileCell: UITableViewCell {
     
     var userImage = UIImageView(image: UIImage(systemName: "person"))
     
@@ -39,13 +39,13 @@ class UserProfileCell: UITableViewCell {
         accessoryType = .none
     }
     
-    func setupViews(){
+    private func setupViews(){
         contentView.addSubview(userImage)
         contentView.addSubview(titleLabel)
         setupConstraints()
     }
     
-    func setupConstraints(){
+    private func setupConstraints(){
         userImage.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         
